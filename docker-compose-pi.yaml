@@ -1,0 +1,16 @@
+﻿version: '3.7'
+
+services: 
+  pingerpi:
+    image: pingerpi
+    command: -p /var/lib/docker
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: Antyrama.Pinger/Dockerfile
+      args:
+        - RUNTIME_IMAGE_VERSION=mcr.microsoft.com/dotnet/runtime:3.1-bullseye-slim-arm32v7
+        - SDK_IMAGE_VERSION=mcr.microsoft.com/dotnet/sdk:3.1-bullseye
+    volumes:
+      - /tmp/logs:/var/lib/docker
+      

@@ -1,0 +1,15 @@
+﻿version: '3.7'
+
+services: 
+  pinger:
+    image: pinger
+    command: -l /var/lib/docker
+    build:
+      context: ./
+      dockerfile: Antyrama.Pinger/Dockerfile
+      args:
+        - RUNTIME_IMAGE_VERSION=mcr.microsoft.com/dotnet/runtime:3.1
+        - SDK_IMAGE_VERSION=mcr.microsoft.com/dotnet/sdk:3.1
+    volumes:
+      - c:/temp/logs:/var/lib/docker
+      
